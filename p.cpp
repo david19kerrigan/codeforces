@@ -1,6 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long 
+#define fori for(int i = 0; i < n; ++i)
+#define ci cin >>
+#define co cout <<
+
+ll arr[300010];
 
 int main() {
     ios::sync_with_stdio(0); cin.tie(0);
@@ -13,7 +18,6 @@ int main() {
             cout << 1 << endl;
             continue;
         }
-        ll arr[n];
         bool gcds[n];
         memset(gcds, false, n);
         for(int i = 0; i < n; ++i) gcds[i] = false;
