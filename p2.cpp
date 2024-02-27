@@ -13,7 +13,7 @@ int main() {
             cout << 1 << endl;
             continue;
         }
-        vector<ll> arr(n);
+        ll arr[n];
         ll g = 0;
         ll sum = 0;
         for(int i = 0; i < n; ++i){
@@ -21,10 +21,10 @@ int main() {
             if(i > 0) g = gcd(arr[i] - arr[i-1], g);
             sum += arr[i];
         }
-        sort(arr.begin(), arr.end());
-        ll max = arr[arr.size()-1];
+        sort(arr, arr + n);
+        ll max = arr[n-1];
         ll start = max;
-        int index = arr.size()-1;
+        int index = n-1;
         while(start > 0){
             start -= g;
             while(arr[index] > start) index--;
@@ -32,7 +32,7 @@ int main() {
                 break;
             }
         }
-        if(start < 0) start = arr[arr.size()-1];
+        if(start < 0) start = arr[n-1];
         cout << (max * (n+1) - (sum + start)) / g << endl;
     }
 }
