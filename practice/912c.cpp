@@ -9,28 +9,32 @@ int main() {
     int t; cin >> t;
     while(t--){
         int n; cin >> n;
-        vector<int> arr(n);
-        vector<int> pref(n);
-        int prefix = 0;
+        vector<ll> arr(n);
+        vector<ll> pref(n);
+        ll prefix = 0;
         fori(n){
             cin >> arr[i];
             prefix += arr[i];
             pref[i] = prefix;
         }
-        int mult = 1;
-        int ans = 0;
+        ll mult = 1;
+        ll ans = 0;
         int prevI = -1;
         fori(n){
-            int right = pref[n-1] - pref[i];
+            ll right = pref[n-1] - pref[i];
             if(right > 0){
-                int sum; 
-                if(prevI == -1) sum = arr[0];
+                ll sum; 
+                if(prevI == -1) sum = pref[i];
                 else sum = pref[i] - pref[prevI]; 
                 ans += mult * sum;
                 mult++;
                 prevI = i;
             }  
         }
+        ll sum; 
+        if(prevI == -1) sum = pref[n-1];
+        else sum = pref[n-1] - pref[prevI]; 
+        ans += mult * sum;
         cout << ans << endl;
     }
 }
