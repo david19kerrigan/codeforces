@@ -18,7 +18,7 @@ int main() {
         map<int, int> count;
         fori(0,n){
             cin >> a[i];
-            b[i] = 0;
+            b[i] = 1;
             count[a[i]]++;
         }
         fori(0,n){
@@ -26,7 +26,13 @@ int main() {
             if(count[cur] > 1 && !used.count(cur) && !use.empty()){
                 b[i] = last(use);
                 use.pop_back();
+                used.insert(cur);
             }
         }
+        if(use.empty()){ 
+            fori(0,n) cout << b[i] << " ";
+            cout << endl;
+        }
+        else cout << -1 << endl;
     }
 }
