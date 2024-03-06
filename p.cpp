@@ -10,5 +10,11 @@ int main() {
     ios::sync_with_stdio(0); cin.tie(0);
     int t; cin >> t;
     while(t--){
+        int n, m;
+        cin >> n >> m;
+        vector<int> a(n), b(m);
+        fori(0,n) cin >> a[i];
+        fori(0,m) cin >> b[i];
+        sort(bend(b));
     }
 }
