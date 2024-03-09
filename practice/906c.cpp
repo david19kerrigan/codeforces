@@ -19,16 +19,33 @@ int main() {
         }
         if(c1 != c0){ 
             cout << -1 << endl;
-            break;
+            continue;
         }
         vector<int> ans;
         deque<char> q;
+        int offset = 0;
         fori(0,n) q.push_back(str[i]);
         while(!q.empty()){
+            if(q.front() == q.back() && q.front() == '1'){
+                q.push_front('1');
+                q.push_front('0');
+                ans.push_back(offset);
+                n += 2;
+            }
+            if(q.front() == q.back() && q.front() == '0'){
+                q.push_back('0');
+                q.push_back('1');
+                ans.push_back(n-offset);
+                n += 2;
+            }
             while(!q.empty() && q.front() != q.back()){
                 q.pop_back();
                 q.pop_front();
+                ++offset;
             }
         }
+        cout << ans.size() << endl;
+        fori(0, ans.size()) cout << ans[i] << " ";
+        cout << endl;
     }
 }
