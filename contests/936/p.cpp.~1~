@@ -10,8 +10,7 @@ ll mod = pow(10,9)+7;
 
 ll myPow(ll a, ll b){
     if(a == 0) return b;
-    b = b%mod;
-    return myPow(a-1, b * 2);
+    return myPow(a-1, (b*2)%mod);
 }
 
 int main() {
@@ -25,19 +24,19 @@ int main() {
         fori(0,n){ 
             cin >> arr[i];
             sum += arr[i];
-            sum = sum%mod;
+            sum = sum;
         }
+        sum = (sum%mod+mod)%mod;
         ll max_so_far = 0; ll max_ending_here = 0;
         fori(0,n){
             max_ending_here += arr[i];
             if(max_ending_here < 0) max_ending_here = 0;
             max_so_far = max(max_so_far, max_ending_here);
         }
+        max_so_far = max_so_far%mod;
         ll rem = sum-max_so_far;
-        ll ans = ((ll)(max_so_far*myPow(k,1)%mod+rem%mod));
-        //cout << max_so_far << " " << rem << " " << ans << endl;
-        ll real = ans;
-        if(ans < 0) real = mod - abs(real);
+        ll ans = max_so_far*myPow(k,1)+rem;
+        ll real = (ans+mod)%mod;
         cout << real << endl;
     }
 }
