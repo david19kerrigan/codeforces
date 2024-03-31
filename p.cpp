@@ -11,20 +11,16 @@ int main() {
     int t; cin >> t;
     while(t--){
         int n; cin >> n;
-        vector<int> p(n);
-        set<int> s;
+        vector<int> has(n+1), ans(n);
         int m = 0;
         fori(0,n){
             int cur; cin >> cur;
-            if((cur==1 || cur==m-1 || cur==m+1) && !s.count(m)){ 
-                cout << m << " ";
-                s.insert(m);
-                ++m;
-            } else{
-                cout << m-cur << " ";
-                s.insert(m-cur);
-            }
+            if(cur>0) ans[i] = m; 
+            else ans[i] = m-cur;
+            has[ans[i]]=true;
+            while(has[m]) ++m;
         }
+        for(auto i: ans) cout << i << " ";
         cout << endl;
     }
 }
