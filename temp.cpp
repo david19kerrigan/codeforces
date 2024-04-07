@@ -4,6 +4,7 @@ using namespace std;
 #define fori(s,n) for(int i = s; i < n; ++i)
 #define forj(s,n) for(int j = s; j < n; ++j)
 #define bend(a) a.begin(), a.end()
+#define rbend(a) a.rbegin(), a.rend()
 #define aback(a,i) a[a.size()-i]
 
 int main() {
