@@ -3,6 +3,7 @@ using namespace std;
 #define ll long long
 #define fori(s,n) for(int i = s; i < n; ++i)
 #define forj(s,n) for(int j = s; j < n; ++j)
+#define fork(s,n) for(int k = s; k < n; ++k)
 #define bend(a) a.begin(), a.end()
 #define rbend(a) a.rbegin(), a.rend()
 #define aback(a,i) a[a.size()-i]
