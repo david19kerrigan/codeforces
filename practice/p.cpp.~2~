@@ -12,8 +12,16 @@ int main() {
     ios::sync_with_stdio(0); cin.tie(0);
     int t; cin >> t;
     while(t--){
-        int n; cin >> n;
-        vector<int> a(n);
-        fori(0,n) cin >> a[i];
+        string s; cin >> s;
+        s = '0'+s;
+        int last = s.size();
+        for(int i=s.length()-1; i>=0; --i){
+            if(s[i]-'0'>=5){
+                s[i-1]++;
+                last = i;
+            }
+        }
+        fori(s[0]=='0',s.size()) cout << (i>=last?'0':s[i]);
+        cout << endl;
     }
 }
