@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define fori(s,n) for(int i = s; i < n; ++i)
+#define forj(s,n) for(int j = s; j < n; ++j)
+#define fork(s,n) for(int k = s; k < n; ++k)
+#define bend(a) a.begin(), a.end()
+#define rbend(a) a.rbegin(), a.rend()
+#define aback(a,i) a[a.size()-i]
+
+int main() {
+    ios::sync_with_stdio(0); cin.tie(0);
+    int t; cin >> t;
+    while(t--){
+        string s; cin >> s;
+        ll m = 0;
+        if(s.find('0')<s.size()){
+            s=s+s+'0';
+            ll cur = 0;
+            fori(0,s.size()){
+                if(s[i]=='1') ++cur;
+                else {
+                    m = max(m,cur);
+                    cur = 0;
+                }
+            }
+            cout << ((m+1)/2) * ((m+2)/2) << endl;
+        } else cout << (ll)s.size()*s.size() << endl;
+    }
+}
