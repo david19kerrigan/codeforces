@@ -14,7 +14,14 @@ int main() {
     while(t--){
         int n; cin >> n;
         vector<ll> a(n);
+        fori(0,n) cin >> a[i];
         int l = 0;
         int r = n-1;
+        int ans = 0;
+        while(l<r){
+            ans = gcd(abs(a[l]-a[r]), ans);
+            ++l; --r;
+        }
+        cout << ans << endl;
     }
 }
