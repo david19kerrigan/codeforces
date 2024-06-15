@@ -1,0 +1,66 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define fori(s,n) for(int i = s; i < n; ++i)
+#define forj(s,n) for(int j = s; j < n; ++j)
+#define fork(s,n) for(int k = s; k < n; ++k)
+#define bend(a) a.begin(), a.end()
+#define rbend(a) a.rbegin(), a.rend()
+#define aback(a,i) a[a.size()-i]
+
+int main() {
+    ios::sync_with_stdio(0); cin.tie(0);
+    int t; cin >> t;
+    while(t--){
+        ll n,m;
+        cin >> n >> m;
+        vector<ll> a(n+m+1),b(n+m+1),type(n+m+1);
+        fori(0,n+m+1) cin >> a[i];
+        fori(0,n+m+1) cin >> b[i];
+        int bad = n+m;
+        ll sum = 0, cap = n+m;
+        fori(0,cap){
+            if(a[i]>b[i]){
+                if(n>0){
+                    --n;
+                    sum+=a[i];
+                    type[i]=0;
+                } else{
+                    --m;
+                    sum+=b[i];
+                    type[i]=1;
+                    bad=min(bad,i);
+                }
+            } else{
+                if(m>0){
+                    --m;
+                    sum+=b[i];
+                    type[i]=1;
+                } else{
+                    --n;
+                    sum+=a[i];
+                    type[i]=0;
+                    bad=min(bad,i);
+                }
+            }
+        }
+        fori(0,cap){
+            if(i<bad && type[i]!=type[bad]){
+                if(type[i]){
+                    cout << sum-b[i]+b[bad]-a[bad]+a[cap];
+                } else{
+                    cout << sum-a[i]+a[bad]-b[bad]+b[cap];
+                }
+            }
+            else{
+                if(type[i]){
+                    cout << sum-b[i]+b[cap];
+                } else{
+                    cout << sum-a[i]+a[cap];
+                }
+            }
+            cout << ' ';
+        }
+        cout << sum << endl;
+    }
+}
