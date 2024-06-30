@@ -12,16 +12,5 @@ int main() {
     ios::sync_with_stdio(0); cin.tie(0);
     int t; cin >> t;
     while(t--){
-    	int n; cin >> n;
-    	vector<vector<int>> ans(n, vector<int>(n));
-        int start = 1;
-        fori(0,n) {
-            forj(0,n){
-                ans[i][j] = start%(int)pow(n,2);
-                cout << ans[i][j] << ' ';
-                start+=2;
-            }
-            cout << endl;
-        }
     }
 }

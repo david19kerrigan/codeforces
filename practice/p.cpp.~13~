@@ -13,15 +13,22 @@ int main() {
     int t; cin >> t;
     while(t--){
     	int n; cin >> n;
-    	vector<vector<int>> ans(n, vector<int>(n));
-        int start = 1;
+    	vector<vector<int>> a(n, vector<int>(n));
+		int mn=1, mx=n*n;
+		bool b = true;
         fori(0,n) {
             forj(0,n){
-                ans[i][j] = start%(int)pow(n,2);
-                cout << ans[i][j] << ' ';
-                start+=2;
+				if(b) a[i][j]=mx--;
+				else a[i][j]=mn++;
+				b=!b;
             }
-            cout << endl;
+			if(i&1) reverse(bend(a[i]));
         }
+		fori(0,n) {
+			forj(0,n) {
+				cout << a[i][j] << ' ';
+			}
+			cout << endl;
+		}
     }
 }
