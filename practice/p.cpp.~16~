@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define fori(s,n) for(int i = s; i < n; ++i)
+#define forj(s,n) for(int j = s; j < n; ++j)
+#define fork(s,n) for(int k = s; k < n; ++k)
+#define all(a) a.begin(), a.end()
+#define rbend(a) a.rbegin(), a.rend()
+#define aback(a,i) a[a.size()-i]
+
+vector<vector<int>> pairs(1001, vector<int>());
+int main() {
+    ios::sync_with_stdio(0); cin.tie(0);
+	fori(1,1001){
+		forj(1,1001){
+			if(gcd(i,j)==1){
+				pairs[i].push_back(j);
+				pairs[j].push_back(i);
+			}
+		}
+	}
+    int t; cin >> t;
+    while(t--){
+		int n; cin >> n;
+		vector<int> nums(1001, -1);
+		fori(0,n){
+			int cur; cin >> cur;
+			nums[cur] = i;
+		}
+		int ans = -1;
+		fori(1,1001){
+			for(int j: pairs[i]){
+				if(nums[i]!=-1 && nums[j]!=-1) ans = max(ans,nums[i]+nums[j]+2);
+			}
+		}
+		cout << ans << endl;
+    }
+}
