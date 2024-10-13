@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define fori(s,n) for(int i = s; i < n; ++i)
+#define forj(s,n) for(int j = s; j < n; ++j)
+#define fork(s,n) for(int k = s; k < n; ++k)
+#define all(a) a.begin(), a.end()
+#define rall(a) a.rbegin(), a.rend()
+#define back(a,i) a[a.size()-i]
+
+int main() {
+    ios::sync_with_stdio(0); cin.tie(0);
+    int t; cin >> t;
+    while(t--){
+		ll b,c,d;
+		cin >> b >> c >> d;
+		ll ans = 0;
+		fori(0,64){
+			ll bi = (b >> i)&1;
+			ll ci = (c >> i)&1;
+			ll di = (d >> i)&1;
+			if((bi && !ci && !di) || (!bi && ci && di)){
+				ans = -1;
+				break;
+			}
+			if((!bi&&!ci&&!di) || (!bi&&ci&&!di) || (bi&&ci&&di)){
+				ans |= 0ll << i;
+			} else {
+				ans |= 1ll << i;
+			}
+		}
+		cout << ans << endl;
+    }
+}
