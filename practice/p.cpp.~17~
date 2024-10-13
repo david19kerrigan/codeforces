@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define fori(s,n) for(int i = s; i < n; ++i)
+#define forj(s,n) for(int j = s; j < n; ++j)
+#define fork(s,n) for(int k = s; k < n; ++k)
+#define all(a) a.begin(), a.end()
+#define rall(a) a.rbegin(), a.rend()
+#define back(a,i) a[a.size()-i]
+
+int main() {
+    ios::sync_with_stdio(0); cin.tie(0);
+    int t; cin >> t;
+    while(t--){
+		int n; cin >> n;
+		vector<int> arr(n+1,0);
+		vector<int> vis(n+1,0);
+		vector<int> res(n+1,0);
+		string color;
+		fori(1,n+1) cin >> arr[i];
+		cin >> color;
+		fori(1,n+1){
+			if(vis[i] > 0) continue;
+			int pos = i;
+			int count = 0;
+			while(vis[pos] != 1){
+				vis[pos] = 1;
+				if(color[pos-1] == '0') count++;
+				pos = arr[pos];
+			}
+			pos = i;
+			while(vis[pos] != 2){
+				vis[pos] = 2;
+				res[pos] = count;
+				pos = arr[pos];
+			}
+		}
+		fori(1,n+1) cout << res[i] << " ";
+		cout << endl;
+    }
+}
