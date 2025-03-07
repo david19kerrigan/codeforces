@@ -8,27 +8,36 @@ using namespace std;
 #define rall(a) a.rbegin(), a.rend()
 #define back(a,i) a[a.size()-i]
 
-ll mod = 1e9+7;
-
-ll modpow(ll num, ll pow){
-    if(num == 1) return num;
-    return modpow(num*pow%mod, pow-1);
-}
-
 int main() {
     ios::sync_with_stdio(0); cin.tie(0);
-    int t; cin >> t;
-    while(t--){
-        int n; cin >> n;
-        ll sum = 0;
-        ll sumsq = 0;
-        fori(0,n){
-            ll cur; cin >> cur;
-            sum += cur; sum %= mod;
-            sumsq += pow(cur,2); sumsq %= mod;
+    int n; cin >> n;
+    int q; cin >> q;
+    vector<set<int>> nest(n);
+    map<int, int> pigeon;
+    fori(0, nest.size()){
+        nest[i].insert(i);
+        pigeon[i] = i;
+    }
+    fori(0, q){
+        int op, a, b;
+        cin >> op;
+        if(op == 1){
+            int a, b; cin >> a >> b;
+            nest[pigeon[i]].erase(i);
+            pigeon[i] = b;
+            nest[b].insert(i);
         }
-        sum = sum*sum/2%mod;
-        sum = (sum-sumsq)%mod;
-        cout << (sum/2%mod)/((n*(n-1)/2)%mod) << endl;
+        else if(op == 2){
+            int a, b; cin >> a >> b;
+            swap(nest[pigeon[a]], nest[pigeon[b]]);
+            forj(0, pigeon.size()){
+                if(pigeon[i] == a) pigeon[i] = b;
+                if(pigeon[i] == b) pigeon[i] = a;
+            }
+        }
+        else{
+            int a; cin >> a;
+            cout << pigeon[a] << endl;
+        }
     }
 }
