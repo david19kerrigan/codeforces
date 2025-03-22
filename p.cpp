@@ -8,23 +8,9 @@ using namespace std;
 #define rall(a) a.rbegin(), a.rend()
 #define back(a,i) a[a.size()-i]
 
-map<int, vector<int>> graph;
-set<int> red, blue;
-set<pair<int, int>> edges;
-
-void recur(int cur, int level){
-    for(auto next: graph[cur]){
-    }
-}
-
 int main() {
     ios::sync_with_stdio(0); cin.tie(0);
     int n; cin >> n;
-    fori(1, n){
-        int a, b;
-        cin >> a >> b;
-        graph[a].push_back(b);
-        edges.insert(pair(min(a, b), max(a, b)));
+    fori(0, n){
     }
-    recur(1, 0);
 }
