@@ -8,36 +8,23 @@ using namespace std;
 #define rall(a) a.rbegin(), a.rend()
 #define back(a,i) a[a.size()-i]
 
+map<int, vector<int>> graph;
+set<int> red, blue;
+set<pair<int, int>> edges;
+
+void recur(int cur, int level){
+    for(auto next: graph[cur]){
+    }
+}
+
 int main() {
     ios::sync_with_stdio(0); cin.tie(0);
     int n; cin >> n;
-    int q; cin >> q;
-    vector<set<int>> nest(n);
-    map<int, int> pigeon;
-    fori(0, nest.size()){
-        nest[i].insert(i);
-        pigeon[i] = i;
+    fori(1, n){
+        int a, b;
+        cin >> a >> b;
+        graph[a].push_back(b);
+        edges.insert(pair(min(a, b), max(a, b)));
     }
-    fori(0, q){
-        int op, a, b;
-        cin >> op;
-        if(op == 1){
-            int a, b; cin >> a >> b;
-            nest[pigeon[i]].erase(i);
-            pigeon[i] = b;
-            nest[b].insert(i);
-        }
-        else if(op == 2){
-            int a, b; cin >> a >> b;
-            swap(nest[pigeon[a]], nest[pigeon[b]]);
-            forj(0, pigeon.size()){
-                if(pigeon[i] == a) pigeon[i] = b;
-                if(pigeon[i] == b) pigeon[i] = a;
-            }
-        }
-        else{
-            int a; cin >> a;
-            cout << pigeon[a] << endl;
-        }
-    }
+    recur(1, 0);
 }
