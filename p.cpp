@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-#include <atcoder/fenwicktree>
 using namespace std;
 #define ll long long
 #define fori(s,n) for(int i = s; i < n; ++i)
@@ -12,9 +11,20 @@ using namespace std;
 #define print_map(map) for(auto cur: map) cout << cur.first << ": " << cur.second << endl;
 #define print_set(set) for(auto cur: set) { cout << cur << " "; } cout << endl;
 
+ll exp(int a, int b) { return pow(2,a) * pow(b,2); }
+
 int main() {
     ios::sync_with_stdio(0); cin.tie(0);
-    int n; cin >> n;
-    fori(0, n){
+    ll n; cin >> n;
+    ll a = 1;
+    ll b = 1;
+    ll ans = 0;
+    ll prev = 0;
+    while(exp(a,1) <= n){
+        b = floor(sqrt(n / pow(2,a)));
+        ans += abs(b-prev);
+        prev = b/2;
+        a++;
     }
+    cout << ans << endl;
 }
