@@ -5,3 +5,5 @@ res:
 	rm p.cpp ; cp temp.cpp p.cpp
 run:
 	cat test | ./a.out
+com:
+	g++ p.cpp $(CXXFLAGS) 
