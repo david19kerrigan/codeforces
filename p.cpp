@@ -8,6 +8,8 @@ using namespace std;
 #define print_map(map) for(auto cur: map) cout << cur.first << ": " << cur.second << endl;
 #define print_set(set) for(auto cur: set) { cout << cur << " "; } cout << endl;
 
+#define int ll
+
 int base(int number, int bs){
     if(number == 0) return 0;
     string result;
@@ -29,23 +31,38 @@ int main() {
     ios::sync_with_stdio(0); cin.tie(0);
     int a, n;
     cin >> a >> n;
-    int ans = 0;
+    ll ans = 0;
     int len = 1;
-    vector<int> pow = {1};
+    vector<ll> pow = {1};
     while(true){
         if(pow.size() < len) pow.push_back(pow.back() * 10);
-        if(pow.back() > n) break;
+        if(pow.back() >= n) break;
         vector<int> dig((len+1)/2, 0);
         dig[0] = 1;
-        int num = 0;
-        rep(i, len){
-            int ind;
-            if(i < dig.size()) ind = i;
-            else ind = dig.size() - 1 - i;
-            num += dig[ind] * pow[i];
+        while(true){
+            int num = 0;
+            rep(i, len){
+                int ind;
+                if(i < dig.size()) ind = i;
+                else ind = len - 1 - i;
+                num += dig[ind] * pow[i];
+            }
+            if(isP(base(num, a))){
+                ans += num;
+            }
+            bool found = false;
+            for(int i = dig.size() - 1; i >= 0; --i){
+                if(dig[i] == 9){
+                    dig[i] = 0;
+                }
+                else{
+                    ++dig[i];
+                    found = true;
+                    break;
+                }
+            }
+            if(!found) break;
         }
-        print_arr(dig);
-        cout << num << endl;
         ++len;
     }
     cout << ans << endl;
